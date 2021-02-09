@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: https://<minikube-host>:<minikube-port>
+  url: https://argocd-server-argocd.apps-crc.testing
 
   dex.config: |
     connectors:
@@ -14,7 +14,7 @@ data:
         id: github
         name: GitHub
         config:
-          clientID: <client-id>
-          clientSecret: <client-secret>
+          clientID: 226f5d835233624236bf 
+          clientSecret: 6e694f64854641f6606fc70bfc94f7e5f06d2a7d
           loadAllGroups: true
 
