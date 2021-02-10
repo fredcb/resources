@@ -17,4 +17,27 @@ data:
           clientID: 226f5d835233624236bf 
           clientSecret: 6e694f64854641f6606fc70bfc94f7e5f06d2a7d
           loadAllGroups: true
+  resource.customizations: |
+   route.openshift.io/v1:
+      health.lua: |
+        hs = {}
+        if obj.status ~= nil then
+          if obj.status.conditions ~= nil then
+            for i, condition in ipairs(obj.status.conditions) do
+              if condition.type == "Ready" and condition.status == "False" then
+                hs.status = "Degraded"
+                hs.message = condition.message
+                return hs
+              end
+              if condition.type == "Ready" and condition.status == "True" then
+                hs.status = "Healthy"
+                hs.message = condition.message
+                return hs
+              end
+            end
+          end
+        end
 
+        hs.status = "Progressing"
+        hs.message = "Waiting for route"
+        return hs
