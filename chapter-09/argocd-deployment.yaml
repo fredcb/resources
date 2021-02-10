@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: argocd-server
+spec:
+  template:
+    spec:
+      "$setElementOrder/containers":
+      - name: argocd-server
+      containers:
+      - command:
+        - argocd-server
+        - "--insecure"
+        - "--staticassets"
+        - "/shared/app"
+        name: argocd-server
