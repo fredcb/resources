@@ -1,12 +1,10 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: Deployment
 metadata:
   name: argocd-server
 spec:
   template:
     spec:
-      "$setElementOrder/containers":
-      - name: argocd-server
       containers:
       - command:
         - argocd-server
