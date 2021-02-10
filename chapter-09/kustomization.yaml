@@ -9,3 +9,4 @@ patchesStrategicMerge:
 - argocd-rbac-cm.yaml
 - argocd-server.yaml
 - argocd-deployment.yaml
+- argocd-route.yaml
